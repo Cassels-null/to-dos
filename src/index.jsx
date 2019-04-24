@@ -12,15 +12,21 @@ class App extends React.Component {
         this.addToList = this.addToList.bind(this);
     }
 
-    addToList(task){
-        window.alert("_______");
-        this.state.list.push(task);
+    addToList(e){
+        e.preventDefault();
+        let tempList = this.state.list.slice();
+        tempList.push(document.getElementById("taskInput").value);
+        this.setState({list: tempList});
+        window.alert(this.state.list.length);
     }
 
     render(){
         return(<div>
                 One Cannot Eat Raw Sparklebunny
-                <NewTodo addToList={this.addToList}/>
+                    <form onSubmit={this.addToList}>
+                    <input id="taskInput" type="text" placeholder="create new to-do"></input>
+                    <input type="submit" value="add to-do"></input>
+                </form>
             </div>
         )
     }
