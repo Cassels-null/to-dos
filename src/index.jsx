@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import NewTodo from './newTodo.jsx';
+import List from './list.jsx';
 
 class App extends React.Component {
     constructor(props){
@@ -17,7 +18,7 @@ class App extends React.Component {
         let tempList = this.state.list.slice();
         tempList.push(document.getElementById("taskInput").value);
         this.setState({list: tempList});
-        window.alert(this.state.list.length);
+        // window.alert(this.state.list.length);
     }
 
     render(){
@@ -25,8 +26,9 @@ class App extends React.Component {
                 One Cannot Eat Raw Sparklebunny
                     <form onSubmit={this.addToList}>
                     <input id="taskInput" type="text" placeholder="create new to-do"></input>
-                    <input type="submit" value="add to-do"></input>
+                    <input id="submit" type="submit" value="add to-do"></input>
                 </form>
+                <List list={this.state.list}/>
             </div>
         )
     }
