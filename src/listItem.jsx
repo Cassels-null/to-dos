@@ -14,7 +14,7 @@ class ListItem extends React.Component {
         return(
             <div className="listItem">
                 <span>{(this.props.item.done === true)? <s>{this.props.item.task}</s> : this.props.item.task}</span>
-                <input type="checkbox" onClick={()=>{this.toggle()}}/>
+                <input className="doneBox" type="checkbox" onClick={()=>{this.toggle()}}/>
             </div>
         )
     }
