@@ -21,9 +21,22 @@
     padding-right: 10px;
 }
 
+.tickBoxes{
+    float: right;
+}
+
+.deleteBox{
+    background-color: red;
+    color: white;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    /* float: right; */
+}
+
 .doneBox{
     /* margin-right: 10px; */
-    float: right;
+    /* float: right; */
 }
 
 #submit{

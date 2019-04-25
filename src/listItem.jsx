@@ -14,7 +14,10 @@ class ListItem extends React.Component {
         return(
             <div className="listItem">
                 <span>{(this.props.item.done === true)? <s>{this.props.item.task}</s> : this.props.item.task}</span>
-                <input className="doneBox" type="checkbox" onClick={()=>{this.toggle()}}/>
+                <span className="tickBoxes">
+                    <input className="doneBox" type="checkbox" onClick={()=>{this.toggle()}}/>
+                    <span className="deleteBox" onClick={()=>{this.deleter()}}>X</span>
+                </span>
             </div>
         )
     }
@@ -24,6 +27,11 @@ class ListItem extends React.Component {
         // if(this.state.done === false){
         //     this.setState({done: true})
         // }
+    }
+
+    deleter(){
+        this.props.deleteTask(this.props.item.id);
+        // window.alert("wub");
     }
 }
 export default ListItem;

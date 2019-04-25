@@ -12,7 +12,7 @@ class List extends React.Component {
 
     render(){
         return(this.props.list.map((ele)=>{return(
-            <ListItem item={ele} toggleDone={this.props.toggleDone}/>
+            <ListItem item={ele} deleteTask={this.props.deleteTask} toggleDone={this.props.toggleDone}/>
         )})
         )
     }

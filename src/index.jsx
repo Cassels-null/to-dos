@@ -13,6 +13,7 @@ class App extends React.Component {
         }
         this.addToList = this.addToList.bind(this);
         this.toggleDone = this.toggleDone.bind(this);
+        this.deleteTask = this.deleteTask.bind(this);
     }
 
     addToList(e){
@@ -40,6 +41,18 @@ class App extends React.Component {
         this.setState({list: tempList});
     }
 
+    deleteTask(id){
+        // window.alert("wubwub");
+        let targetIndex = this.state.list.findIndex((ele)=>{return (ele.id === id)})
+        if(targetIndex < 0){
+            window.alert(targetIndex);
+            return;
+        }
+        let tempList = this.state.list.slice();
+        tempList.splice(targetIndex, 1);
+        this.setState({list: tempList});
+    }
+
     render(){
         return(<div id="main">
                 <div>One Cannot Eat Raw Sparklebunny</div>
@@ -47,7 +60,7 @@ class App extends React.Component {
                     <input id="taskInput" type="text" placeholder="create new to-do"></input>
                     <input id="submit" type="submit" value="add to-do"></input>
                 </form>
-                <List list={this.state.list} toggleDone={this.toggleDone}/>
+                <List list={this.state.list} deleteTask={this.deleteTask} toggleDone={this.toggleDone}/>
             </div>
         )
     }
