@@ -11,6 +11,7 @@ class App extends React.Component {
             list: []
         }
         this.addToList = this.addToList.bind(this);
+        this.toggleDone = this.toggleDone.bind(this);
     }
 
     addToList(e){
@@ -18,18 +19,24 @@ class App extends React.Component {
         let tempList = this.state.list.slice();
         tempList.push({
             task: document.getElementById("taskInput").value,
-            done: false});
+            done: false,
+            id: 0});
         this.setState({list: tempList});
         // window.alert(this.state.list.length);
     }
 
-    // toggleDone(id){
-    //     let targetIndex = this.list.findIndex((ele)=>{ele.id ===id})
-    //     if(targetIndex < 0) return;
-    //     let tempList = this.state.list.slice();
-    //     templist[targetIndex].done = true;
-    //     this.setState({list: tempList});
-    // }
+    toggleDone(id){
+        // window.alert("0")
+        let targetIndex = this.state.list.findIndex((ele)=>{return (ele.id === id)})
+        // window.alert(targetIndex + "_");
+        if(targetIndex < 0){
+            window.alert(targetIndex);
+            return;
+        }
+        let tempList = this.state.list.slice();
+        tempList[targetIndex].done = !tempList[targetIndex].done;
+        this.setState({list: tempList});
+    }
 
     render(){
         return(<div id="main">
@@ -38,7 +45,7 @@ class App extends React.Component {
                     <input id="taskInput" type="text" placeholder="create new to-do"></input>
                     <input id="submit" type="submit" value="add to-do"></input>
                 </form>
-                <List list={this.state.list}/>
+                <List list={this.state.list} toggleDone={this.toggleDone}/>
             </div>
         )
     }

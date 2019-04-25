@@ -5,26 +5,25 @@ class ListItem extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            done: this.props.done
+            done: this.props.item.done
         }
     }
 
     render(){
+        // window.alert(this.props.item.done);
         return(
             <div className="listItem">
-                <span>{(this.state.done === true)? 
-                    <s>{this.props.item.task}</s> : 
-                    this.props.item.task
-                }</span>
-                <input type="checkbox" onSubmit={this.toggleDone}/>
+                <span>{(this.props.item.done === true)? <s>{this.props.item.task}</s> : this.props.item.task}</span>
+                <input type="checkbox" onClick={()=>{this.toggle()}}/>
             </div>
         )
     }
 
-    toggleDone(){
-        if(this.state.done === false){
-            this.setState({done: true})
-        }
+    toggle(){
+        this.props.toggleDone(this.props.item.id)
+        // if(this.state.done === false){
+        //     this.setState({done: true})
+        // }
     }
 }
 export default ListItem;
