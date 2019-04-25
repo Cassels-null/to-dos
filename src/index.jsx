@@ -8,7 +8,8 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            list: []
+            list: [],
+            maxId: 0
         }
         this.addToList = this.addToList.bind(this);
         this.toggleDone = this.toggleDone.bind(this);
@@ -20,8 +21,9 @@ class App extends React.Component {
         tempList.push({
             task: document.getElementById("taskInput").value,
             done: false,
-            id: 0});
+            id: this.state.maxId});
         this.setState({list: tempList});
+        this.setState({maxId: this.state.maxId + 1})
         // window.alert(this.state.list.length);
     }
 
