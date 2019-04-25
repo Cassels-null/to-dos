@@ -17,7 +17,7 @@ class ListItem extends React.Component {
                 <span className="tickBoxes">
                     <input className="doneBox" type="checkbox" onClick={()=>{this.toggle()}}
                     checked={this.props.item.done}/>
-                    <span className="deleteBox" onClick={()=>{this.deleter()}}>X</span>
+                    <span className="deleteBox" onClick={()=>{this.deleter()}}>x</span>
                 </span>
             </div>
         )

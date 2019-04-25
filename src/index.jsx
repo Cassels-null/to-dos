@@ -8,8 +8,18 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            list: [],
-            maxId: 0
+            list: [
+                {done: false,
+                id:0,
+                task: "Hello World!"},
+                {done: false,
+                id:1,
+                task: "Lorum Ipsum Dolor Sit Amet"},
+                {done: false,
+                id:2,
+                task: "this is a series of words that I am typeing with my hands"}
+            ],
+            maxId: 3
         }
         this.addToList = this.addToList.bind(this);
         this.toggleDone = this.toggleDone.bind(this);
@@ -55,7 +65,7 @@ class App extends React.Component {
 
     render(){
         return(<div id="main">
-                <div>One Cannot Eat Raw Sparklebunny</div>
+                <div id="banner">To-Do List</div>
                     <form id="inputBar" onSubmit={this.addToList}>
                     <input id="taskInput" type="text" placeholder="create new to-do"></input>
                     <input id="submit" type="submit" value="add to-do"></input>
