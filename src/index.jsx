@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import NewTodo from './newTodo.jsx';
 import List from './list.jsx';
 
+//normal react setup
 class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            list: [
+            list: [//pre-seeded data in actual deployment, I reccomend useing a database,
+                    //but I wanted to ensure that every user who opens this demo sees some prexisting data.
+                    //and persitantly storeing todos for all users could have weakend the demo.
                 {done: false,
                 id:0,
                 task: "Hello World!"},
@@ -26,6 +28,8 @@ class App extends React.Component {
         this.deleteTask = this.deleteTask.bind(this);
     }
 
+    //add a new task to the todo the todo list
+    //to be called by a form sumbition
     addToList(e){
         e.preventDefault();
         let tempList = this.state.list.slice();
@@ -35,13 +39,11 @@ class App extends React.Component {
             id: this.state.maxId});
         this.setState({list: tempList});
         this.setState({maxId: this.state.maxId + 1})
-        // window.alert(this.state.list.length);
     }
 
+    //accepts a task id, and toggels that task's "done" property to true/false
     toggleDone(id){
-        // window.alert("0")
         let targetIndex = this.state.list.findIndex((ele)=>{return (ele.id === id)})
-        // window.alert(targetIndex + "_");
         if(targetIndex < 0){
             window.alert(targetIndex);
             return;
@@ -51,8 +53,8 @@ class App extends React.Component {
         this.setState({list: tempList});
     }
 
+    //accepts a task id, and removes that task from the task list in App's state
     deleteTask(id){
-        // window.alert("wubwub");
         let targetIndex = this.state.list.findIndex((ele)=>{return (ele.id === id)})
         if(targetIndex < 0){
             window.alert(targetIndex);
@@ -66,10 +68,12 @@ class App extends React.Component {
     render(){
         return(<div id="main">
                 <div id="banner">To-Do List</div>
-                    <form id="inputBar" onSubmit={this.addToList}>
+                {/* render input */}
+                <form id="inputBar" onSubmit={this.addToList}>
                     <input id="taskInput" type="text" placeholder="create new to-do"></input>
                     <input id="submit" type="submit" value="add to-do"></input>
                 </form>
+                {/* render task list */}
                 <List list={this.state.list} deleteTask={this.deleteTask} toggleDone={this.toggleDone}/>
             </div>
         )
@@ -77,5 +81,5 @@ class App extends React.Component {
 
 
 }
-// window.alert("ping!");
+//render <App/> to page
 ReactDOM.render(<App/>, document.getElementById("app"));

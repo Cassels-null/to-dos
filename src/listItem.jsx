@@ -10,29 +10,36 @@ class ListItem extends React.Component {
     }
 
     render(){
-        // window.alert(this.props.item.done);
         return(
             <div className="listItem">
-                <span>{(this.props.item.done === true)? <s>{this.props.item.task}</s> : this.props.item.task}</span>
+                {/* render task name */}
+                <span>
+                    {(this.props.item.done === true)? 
+                        <s>{this.props.item.task}</s> : //cross out task name if done is true
+                        this.props.item.task}
+                </span>
                 <span className="tickBoxes">
-                    <input className="doneBox" type="checkbox" onClick={()=>{this.toggle()}}
-                    checked={this.props.item.done}/>
-                    <span className="deleteBox" onClick={()=>{this.deleter()}}>x</span>
+                    {/* checkbok toggles "done" property */}
+                    <input className="doneBox" type="checkbox" 
+                        onClick={()=>{this.toggle()}}//changes state of App component
+                        checked={this.props.item.done}//match checkbox appearance to value of "done"
+                    />
+                    {/* button deletes task from task list */}
+                    <span className="deleteBox"
+                        onClick={()=>{this.deleter()}}//changes state of App component
+                    >x</span>
                 </span>
             </div>
         )
     }
 
+    //rename props functions to improve html readability
     toggle(){
         this.props.toggleDone(this.props.item.id)
-        // if(this.state.done === false){
-        //     this.setState({done: true})
-        // }
     }
-
+    
     deleter(){
         this.props.deleteTask(this.props.item.id);
-        // window.alert("wub");
     }
 }
 export default ListItem;
